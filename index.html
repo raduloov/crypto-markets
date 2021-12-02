@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="node_modules/animate.css/animate.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Crypto Markets</title>
+  </head>
+  <body>
+    <div class="header"></div>
+    <div class="container">
+      <div class="indecies">
+        <div class="index position">
+          <p><i class="fas fa-hashtag fa-2x"></i></p>
+        </div>
+        <div class="index name">
+          <p>COIN</p>
+        </div>
+        <div class="index price">
+          <p>CURRENT PRICE</p>
+        </div>
+        <div class="index 1h">
+          <p>1H CHANGE</p>
+        </div>
+        <div class="index 24h">
+          <p>24H CHANGE</p>
+        </div>
+        <div class="index 7d">
+          <p>7D CHANGE</p>
+        </div>
+        <div class="index 24h-high">
+          <p>24H HIGH</p>
+        </div>
+        <div class="index">
+          <p>MARKET CAP</p>
+        </div>
+      </div>
+      <div class="loader"></div>
+      <div class="rows"></div>
+      <div class="footer">
+        <div class="page-info">
+          <p id="coin-index">Currently showing coins #1 - #10</p>
+          <p id="page-index">Currently showing page 1 of 5</p>
+        </div>
+        <div class="buttons">
+          <button class="btn" id="prev-btn"><i class="fas fa-arrow-left fa-3x"></i></button>
+          <button class="btn" id="next-btn"><i class="fas fa-arrow-right fa-3x"></i></button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script defer type="module" src="script.js"></script>
+</html>

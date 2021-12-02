@@ -1,0 +1,22 @@
+{
+  "name": "crypto-markets",
+  "version": "1.0.0",
+  "description": "Real-time crypto data",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "crypto-markets"
+  },
+  "keywords": [
+    "crypto",
+    "markets"
+  ],
+  "author": "Yavor Radulov",
+  "license": "ISC",
+  "dependencies": {
+    "animate.css": "^4.1.1"
+  }
+}
