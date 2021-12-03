@@ -161,7 +161,21 @@ body {
 }
 
 .footer {
-  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+#coin-index,
+#page-index {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin: 10px;
+  font-size: 1.2rem;
+}
+
+#page-index {
+  justify-content: flex-end;
 }
 
 .buttons {
@@ -187,17 +201,6 @@ body {
   background: #afafaf;
   color: #f4f4f4;
   /* transform: scale(1.035); */
-}
-
-.page-info {
-  width: 100%;
-  padding-left: 10px;
-  padding-right: 10px;
-  bottom: 10px;
-  position: absolute;
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.2rem;
 }
 
 /* Spinner */

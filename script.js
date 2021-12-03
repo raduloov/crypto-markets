@@ -8,41 +8,71 @@ const footer = document.querySelector('.footer');
 const coinIndex = document.getElementById('coin-index');
 const pageIndex = document.getElementById('page-index');
 
-// Get initial data
-getData();
+// App object
+let app = {
+  index: 9,
+  page: 1,
+  hasStarted: false,
+};
 
-let index = 9;
-let page = 1;
+// Start app
+initPage();
 
+// Update data automatically
+setInterval(updateData, 30000);
+
+// Event listeners
 nextBtn.addEventListener('click', () => {
   prevBtn.disabled = false;
-  if (index === 49) {
+  if (app.index === 49) {
     nextBtn.disabled = true;
   } else {
     loadPage('next');
-    page++;
+    app.page++;
   }
 });
 prevBtn.addEventListener('click', () => {
   nextBtn.disabled = false;
-  if (index === 9) {
+  if (app.index === 9) {
     prevBtn.disabled = true;
   } else {
     loadPage('prev');
-    page--;
+    app.page--;
   }
 });
 
 // Functions
 async function getData() {
   try {
-    renderSpinner(loaderEl);
-
     const res = await fetch('https://api.coingecko.com/api/v3/coins');
     const data = await res.json();
+    return data;
+  } catch (err) {
+    alert(err);
+  }
+}
 
-    showCoin(data, index);
-    updatePageInfo(index);
+async function initPage() {
+  try {
+    renderSpinner(loaderEl);
+
+    const data = await getData();
+
+    showCoin(data, app.index);
+
+    app.hasStarted = true;
+  } catch (err) {
+    alert(err);
+  }
+}
+
+async function updateData() {
+  try {
+    const data = await getData();
+    rowsEl.innerHTML = '';
+
+    showCoin(data, app.index);
+    console.log('refreshed');
   } catch (err) {
     alert(err);
   }
@@ -97,6 +127,8 @@ function showCoin(coin, index) {
     loaderEl.innerHTML = '';
     rowsEl.insertAdjacentHTML('afterbegin', markup);
   }
+
+  updatePageInfo(app.index, app.page);
 }
 
 function renderSpinner(parentEl) {
@@ -115,25 +147,25 @@ function setColor(percentage) {
   }
 }
 
-function showHeader() {
-  const header = document.querySelector('.header');
-  const markup = `
-  <div class="header">
-    <h1 class="heading animate__animated animate__fadeInDown">Crypto Markets</h1>
-    <h2 class="heading animate__animated animate__fadeInDown">Your favorite place to check the market!</h2>
-  </div>
-  `;
+// function showHeader() {
+//   const header = document.querySelector('.header');
+//   const markup = `
+//   <div class="header">
+//     <h1 class="heading animate__animated animate__fadeInDown">Crypto Markets</h1>
+//     <h2 class="heading animate__animated animate__fadeInDown">Your favorite place to check the market!</h2>
+//   </div>
+//   `;
 
-  header.insertAdjacentHTML('afterbegin', markup);
-}
+//   header.insertAdjacentHTML('afterbegin', markup);
+// }
 
 function loadPage(page) {
   rowsEl.innerHTML = '';
-  page === 'next' ? (index += 10) : (index -= 10);
-  getData();
+  page === 'next' ? (app.index += 10) : (app.index -= 10);
+  initPage();
 }
 
-function updatePageInfo(index) {
+function updatePageInfo(index, page) {
   coinIndex.textContent = `Currently showing coins #${index - 8} - #${index + 1}`;
   pageIndex.textContent = `Currently showing page ${page} of 5`;
 }
