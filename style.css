@@ -203,6 +203,16 @@ body {
   /* transform: scale(1.035); */
 }
 
+.disabled {
+  cursor: not-allowed;
+  opacity: 50%;
+}
+
+.disabled:hover {
+  background-color: #dadada;
+  color: #616161;
+}
+
 /* Spinner */
 .loader {
   width: 100%;

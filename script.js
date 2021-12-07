@@ -147,25 +147,24 @@ function setColor(percentage) {
   }
 }
 
-// function showHeader() {
-//   const header = document.querySelector('.header');
-//   const markup = `
-//   <div class="header">
-//     <h1 class="heading animate__animated animate__fadeInDown">Crypto Markets</h1>
-//     <h2 class="heading animate__animated animate__fadeInDown">Your favorite place to check the market!</h2>
-//   </div>
-//   `;
-
-//   header.insertAdjacentHTML('afterbegin', markup);
-// }
-
 function loadPage(page) {
   rowsEl.innerHTML = '';
   page === 'next' ? (app.index += 10) : (app.index -= 10);
+
+  console.log(app);
   initPage();
 }
 
 function updatePageInfo(index, page) {
   coinIndex.textContent = `Currently showing coins #${index - 8} - #${index + 1}`;
   pageIndex.textContent = `Currently showing page ${page} of 5`;
+
+  if (app.page === 1) {
+    prevBtn.classList.add('disabled');
+  } else if (app.page === 5) {
+    nextBtn.classList.add('disabled');
+  } else {
+    prevBtn.classList.remove('disabled');
+    nextBtn.classList.remove('disabled');
+  }
 }
